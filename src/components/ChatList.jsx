@@ -29,12 +29,12 @@ const ChatList = ({ data }) => {
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 720px;
   overflow-y: scroll;
   padding: 0 1rem;
   background-color: #FFF9EF;
   align-items: flex-start;
-
+  padding: 15px;
 `;
 
 const DateSeparator = styled.p`
