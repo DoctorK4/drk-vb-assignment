@@ -1,4 +1,4 @@
-const Button = ({ type, imgSrc, }) => {
+const Button = ({ type, imgSrc, ...rest }) => {
   return (
   <button type={type} 
     style={{
@@ -10,8 +10,9 @@ const Button = ({ type, imgSrc, }) => {
         backgroundSize: "cover",
         width: "32px",
         height: "32px",
+        position: "relative",
         backgroundPosition: "0px 0px",}}
-        aria-label="뒤로가기"
+    {...rest}
     ></button>);
 };
 

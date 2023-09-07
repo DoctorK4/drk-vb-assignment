@@ -12,6 +12,3 @@ const InputBar = ({ children }) => {
 }
 
 export default InputBar;
-
-
-

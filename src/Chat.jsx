@@ -4,15 +4,14 @@ import getChat from "./apis/getChat";
 import ChatList from "./components/ChatList";
 import HeaderBar from "./components/HeaderBar";
 import InputBar from "./components/InputBar";
-import Button from "./components/Button";
 import arrow_upward from "./assets/arrow_upward.svg";
 import placeholder from "./constant/placeholder";
 import useInput from "./hooks/useInput";
-import formatNowtoString from "./utils/formatNowtoString";
+import formatMsgtoAdd from "./utils/formatMsgtoAdd";
 
 function Chat () {
   const [ chatData, setChatData ] = useState();
-  const inputValue = useInput();
+  const { value, setValue, onChange} = useInput();
   const fetchChat = async () => {
     const data = await getChat();
     setChatData(data);
@@ -20,20 +19,9 @@ function Chat () {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const msgToAdd =  {
-      "id": chatData.length + 1,
-      "user_id": 1,
-      "user_name": "소개녀",
-      "photo_url": "https://photo.vanillabridge.com/app_photos/agent_woman.jpg",
-      "created_at": formatNowtoString(),
-      "msg": {
-          "mtype": "text",
-          "content": inputValue.value,
-        }
-    };
-    const newData = [...chatData, msgToAdd]
+    const newData = [...chatData, formatMsgtoAdd(value, chatData.length)]
     setChatData(newData);
-    inputValue.setValue("");
+    setValue("");
   };
 
   useEffect(() => {
@@ -46,10 +34,10 @@ function Chat () {
     <div>
       <HeaderBar chatData={chatData} />
       <ChatList data={chatData}/>
-      <InputBar>
+      <InputBar style={{ position: "relative" }}>
         <form onSubmit={handleSubmit}>
-          <MsgInput placeholder={placeholder} {...inputValue}/>
-          <Button type="submit" alt="전송" imgSrc={arrow_upward}/>
+          <MsgInput placeholder={placeholder} onChange={onChange}/>
+          <SubmitButton type="submit" alt="전송" disabled={!value}/>
         </form>
       </InputBar>
     </div>
@@ -59,8 +47,29 @@ function Chat () {
 export default Chat;
 
 const MsgInput = styled.input`
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  right: 50%;
+  top: 25%;
   border-radius: 12px;
-  width: 60%;
+  width: 100%;
   height: 32px;
   border: lightgray 2px solid;
 `;
+
+const SubmitButton = styled.button`
+  border: none;
+  background-color: blue;
+  border-radius: 50%;
+  cursor: pointer;
+  background-image: url(${arrow_upward});
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  background-position: 0px 0px;
+  left: 60%;
+  bottom: 22%;
+`
