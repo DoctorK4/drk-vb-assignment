@@ -31,8 +31,8 @@ function Chat () {
           "content": inputValue.value,
         }
     };
-    const newData = chatData.push(msgToAdd)
-    setChatData(prev => newData);
+    const newData = [...chatData, msgToAdd]
+    setChatData(newData);
     inputValue.setValue("");
   };
 
