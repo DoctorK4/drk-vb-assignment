@@ -74,4 +74,4 @@ const SubmitButton = styled.button`
   background-position: 0px 0px;
   left: 60%;
   bottom: 22%;
-`
+`;

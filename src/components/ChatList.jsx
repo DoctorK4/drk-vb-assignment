@@ -43,7 +43,7 @@ const DateSeparator = styled.p`
   font-size: xx-small;
   color: white;
   background-color: lightgray;
-  border-radius: 3px;
+  border-radius: 8px;
   width: 30%;
   height: 1rem;
   line-height: 1rem;
