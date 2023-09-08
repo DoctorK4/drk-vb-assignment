@@ -31,6 +31,8 @@ const Box = styled.div`
   line-height: 1.5rem;
   max-width: 70%;
   font-size: small;
+  position: relative;
+  margin: ${({ type }) => type === "opponent" ? "0 auto 0 0" : "0 0 0 auto"};
 
   p {
     margin: 0;

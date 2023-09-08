@@ -47,6 +47,7 @@ const DateSeparator = styled.p`
   width: 30%;
   height: 1rem;
   line-height: 1rem;
+  margin: 0.5rem auto;
 `;
 
 export default ChatList;
