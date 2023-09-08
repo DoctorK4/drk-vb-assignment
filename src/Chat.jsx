@@ -61,7 +61,7 @@ const MsgInput = styled.input`
 
 const SubmitButton = styled.button`
   border: none;
-  background-color: blue;
+  background-color: ${({disabled}) => disabled ? "lightgray" : "blue"};
   border-radius: 50%;
   cursor: pointer;
   background-image: url(${arrow_upward});
