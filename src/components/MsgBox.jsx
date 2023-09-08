@@ -9,14 +9,14 @@ const MsgBox = ({ msgInfo, type }) => {
     <>
       {type === "opponent" ? 
         <>
-          <OpponentName>{msgInfo.user_name}</OpponentName> 
           <Avatar src={msgInfo.photo_url} size={25} alt={"상대방 프로필"} />
+          <OpponentName>{msgInfo.user_name}</OpponentName> 
         </>
       : null}
-      <SentTime>{formatKRTime(msgInfo.created_at)}</SentTime>
       <Box type={type}>
         {msgInfo.msg.content.split("\\n").map((line, index) => <p key={line + index}>{line}</p>)}
       </Box>
+      <SentTime type={type}>{formatKRTime(msgInfo.created_at)}</SentTime>
     </>
   );
 }
@@ -32,7 +32,7 @@ const Box = styled.div`
   max-width: 70%;
   font-size: small;
   position: relative;
-  margin: ${({ type }) => type === "opponent" ? "0 auto 0 0" : "0 0 0 auto"};
+  margin: ${({ type }) => type === "opponent" ? "2px auto 0 2rem" : "1rem 0 0 auto"};
 
   p {
     margin: 0;
@@ -42,10 +42,16 @@ const Box = styled.div`
 const SentTime = styled.p`
   font-size: xx-small;
   color: gray;
+  position: relative;
+  display: inline-block;
+  float: ${({ type }) => type === "opponent" ? "right" : "left"};
 `;
 
 const OpponentName = styled.p`
   font-size: small;
+  position: relative;
+  left: 2rem;
+  top: 0.5rem;
 `;
 
 export default MsgBox;

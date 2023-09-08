@@ -21,7 +21,8 @@ function Chat () {
     e.preventDefault();
     const newData = [...chatData, formatMsgtoAdd(value, chatData.length)]
     setChatData(newData);
-    setValue("");
+    setValue(prev => "");
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function Chat () {
       <ChatList data={chatData}/>
       <InputBar>
         <form onSubmit={handleSubmit}>
-          <MsgInput placeholder={placeholder} onChange={onChange}/>
+          <MsgInput placeholder={placeholder} value={value} onChange={onChange}/>
           <SubmitButton type="submit" alt="전송" disabled={!value}/>
         </form>
       </InputBar>
