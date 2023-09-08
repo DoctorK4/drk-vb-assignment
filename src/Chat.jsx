@@ -34,7 +34,7 @@ function Chat () {
     <div>
       <HeaderBar chatData={chatData} />
       <ChatList data={chatData}/>
-      <InputBar style={{ position: "relative" }}>
+      <InputBar>
         <form onSubmit={handleSubmit}>
           <MsgInput placeholder={placeholder} onChange={onChange}/>
           <SubmitButton type="submit" alt="전송" disabled={!value}/>
@@ -56,6 +56,7 @@ const MsgInput = styled.input`
   width: 100%;
   height: 32px;
   border: lightgray 2px solid;
+  padding: 0 1rem;
 `;
 
 const SubmitButton = styled.button`
