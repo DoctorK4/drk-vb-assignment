@@ -7,10 +7,10 @@ const MsgBox = ({ msgInfo, type }) => {
   return (
     <>
       {type === "opponent" ? 
-        <>
+        <Profile>
           <Avatar src={msgInfo.photo_url} width={25} alt={"상대방 프로필"} />
           <OpponentName>{msgInfo.user_name}</OpponentName> 
-        </>
+        </Profile>
       : null}
       
       <SingleMsg type={type}>
@@ -23,6 +23,11 @@ const MsgBox = ({ msgInfo, type }) => {
   );
 }
 
+const Profile = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,8 +39,8 @@ const Box = styled.div`
   max-width: 70%;
   font-size: small;
   position: relative;
-  margin: ${({ type }) => type === "opponent" ? "2px auto 0 2rem" : "1rem 0 0 auto"};
-
+  margin: 0 0.5rem 0 0.5rem;
+  
   p {
     margin: 0;
   }
@@ -47,7 +52,8 @@ const Avatar = styled.img`
   height: ${({ size }) => `${size}px`};
   object-fit: cover;
   position: relative;
-  top: 3rem;
+  width: 25px;
+  height: 25px;
 `;
 
 const SentTime = styled.p`
@@ -61,8 +67,8 @@ const SentTime = styled.p`
 const OpponentName = styled.p`
   font-size: small;
   position: relative;
-  left: 2rem;
-  top: 0.5rem;
+  /* left: 2rem; */
+  /* top: 0.5rem; */
 `;
 
 const SingleMsg = styled.div`

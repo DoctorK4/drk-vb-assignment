@@ -34,16 +34,17 @@ const ChatContainer = styled.main`
   flex-direction: column;
   height: 720px;
   overflow-y: scroll;
-  padding: 1rem;
+  overflow-x: hidden;
+  padding: 0 1rem 1rem 1rem;
   background-color: #FFF9EF;
   align-items: flex-start;
-
 `;
 
 const Section = styled.section`
   line-height: 100%;
   width: 100%;
   height: fit-content;
+  margin: 0.5rem 0;
 `;
 
 const DateSeparator = styled.p`
@@ -54,9 +55,10 @@ const DateSeparator = styled.p`
   background-color: lightgray;
   border-radius: 8px;
   width: 30%;
-  height: 1rem;
   line-height: 1rem;
-  margin: 1rem auto;
+  margin: 0.5rem auto;
+  position: relative;
+  top: 0rem;
 `;
 
 export default ChatList;
