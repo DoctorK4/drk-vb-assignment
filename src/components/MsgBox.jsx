@@ -19,6 +19,7 @@ const MsgBox = ({ msgInfo, type }) => {
         </Box>
         <SentTime type={type}>{formatKRTime(msgInfo.created_at)}</SentTime>
       </SingleMsg>
+
     </>
   );
 }
@@ -41,6 +42,7 @@ const Box = styled.div`
   position: relative;
   margin: 0 0.5rem 0 0.5rem;
   
+
   p {
     margin: 0;
   }
