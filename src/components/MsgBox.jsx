@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import formatKRTime from "../utils/formatKRTime";
-import Avatar from "./Avatar";
 
 const MsgBox = ({ msgInfo, type }) => {
   if (msgInfo.msg.mtype === "photo") return null;
@@ -9,14 +8,17 @@ const MsgBox = ({ msgInfo, type }) => {
     <>
       {type === "opponent" ? 
         <>
-          <Avatar src={msgInfo.photo_url} size={25} alt={"상대방 프로필"} />
+          <Avatar src={msgInfo.photo_url} width={25} alt={"상대방 프로필"} />
           <OpponentName>{msgInfo.user_name}</OpponentName> 
         </>
       : null}
-      <Box type={type}>
-        {msgInfo.msg.content.split("\\n").map((line, index) => <p key={line + index}>{line}</p>)}
-      </Box>
-      <SentTime type={type}>{formatKRTime(msgInfo.created_at)}</SentTime>
+      
+      <SingleMsg type={type}>
+        <Box type={type}>
+          {msgInfo.msg.content.split("\\n").map((line, index) => <p key={line + index}>{line}</p>)}
+        </Box>
+        <SentTime type={type}>{formatKRTime(msgInfo.created_at)}</SentTime>
+      </SingleMsg>
     </>
   );
 }
@@ -39,12 +41,21 @@ const Box = styled.div`
   }
 `;
 
+const Avatar = styled.img`
+  border-radius: 50%;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
+  object-fit: cover;
+  position: relative;
+  top: 3rem;
+`;
+
 const SentTime = styled.p`
   font-size: xx-small;
   color: gray;
   position: relative;
   display: inline-block;
-  float: ${({ type }) => type === "opponent" ? "right" : "left"};
+  top: 12px;
 `;
 
 const OpponentName = styled.p`
@@ -52,6 +63,11 @@ const OpponentName = styled.p`
   position: relative;
   left: 2rem;
   top: 0.5rem;
+`;
+
+const SingleMsg = styled.div`
+  display: flex;
+  flex-direction: ${({ type }) => type === "opponent" ? "row" : "row-reverse"};
 `;
 
 export default MsgBox;

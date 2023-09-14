@@ -14,31 +14,40 @@ const ChatList = ({ data }) => {
   return (
     <ChatContainer>
       {
-        data && sortedData.map((item, index) => showDateSeparator(item, index, sortedData) ? 
+        data && sortedData.map((item, index) => 
           <>
-            <DateSeparator>{formatKRDate(item.created_at)}</DateSeparator>
-            <MsgBox key={item.id} msgInfo={item} type={isOpponent(item.user_id)}/>
+            { showDateSeparator(item, index, sortedData) ? 
+            <DateSeparator>{formatKRDate(item.created_at)}</DateSeparator> 
+            : null }
+            <Section >
+              <MsgBox key={item.id} msgInfo={item} type={isOpponent(item.user_id)} />
+            </Section>
           </>
-        :
-          <MsgBox key={item.id} msgInfo={item} type={isOpponent(item.user_id)}/>)
+        )
       }
     </ChatContainer>
   );
 }
 
-const ChatContainer = styled.div`
+const ChatContainer = styled.main`
   display: flex;
   flex-direction: column;
   height: 720px;
   overflow-y: scroll;
-  padding: 0 1rem;
+  padding: 1rem;
   background-color: #FFF9EF;
   align-items: flex-start;
-  padding: 15px;
+
+`;
+
+const Section = styled.section`
+  line-height: 100%;
+  width: 100%;
+  height: fit-content;
 `;
 
 const DateSeparator = styled.p`
-  display: inline-block;
+  display: block;
   text-align: center;
   font-size: xx-small;
   color: white;
@@ -47,7 +56,7 @@ const DateSeparator = styled.p`
   width: 30%;
   height: 1rem;
   line-height: 1rem;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
 `;
 
 export default ChatList;
